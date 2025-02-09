@@ -14,7 +14,9 @@ const StatusPanel = () => {
     
     const {isLoading} = useConvexAuth()
 
-    const users = useQuery(api.users.getUsers)
+    const users = useQuery(api.users.getUsers, {
+      searchUser: ""
+    })
     const me = useQuery(api.users.getMe)
     const removeStatus = useMutation(api.status.removeStatus)
     
