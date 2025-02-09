@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "install": "npm install --legacy-peer-deps",
+    "install": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^5.1.6",
