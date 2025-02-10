@@ -156,7 +156,7 @@ export const getMyConversations = query({
         };
       })
     );
-    return conversationsWithDetails;
+    return conversationsWithDetails.filter((conversation) => conversation !== null);
   },
 });
 
