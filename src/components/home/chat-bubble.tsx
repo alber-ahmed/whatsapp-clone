@@ -120,7 +120,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
             )}
             {open && (
               <ImageDialog
-                src={message.content.split(", ")[0]}
+                src={message.content.split("`")[0]}
                 open={open}
                 onClose={() => setOpen(false)}
               />
@@ -171,7 +171,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 
           {open && (
             <ImageDialog
-              src={message.content.split(",")[0]}
+              src={message.content.split("`")[0]}
               open={open}
               onClose={() => setOpen(false)}
             />
