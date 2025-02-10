@@ -25,10 +25,10 @@ const RightPanel = () => {
     
   return (
     <>
-      <div className={`sm:w-3/4 flex flex-col ${selectedConversation && "sm:w-3/4 w-full" }`}>
+      <div className={`sm:w-3/4 overflow-hidden flex flex-col h-full ${selectedConversation && "sm:w-3/4 w-full" }`}>
         <div className="w-full sticky top-0 z-50">
           {/* Header */}
-          <div className="flex justify-between bg-gray-primary p-3">
+          <div className="flex w-full sticky justify-between bg-gray-primary p-3">
             <div className="flex gap-3 items-center">
               <Avatar>
                 <AvatarImage

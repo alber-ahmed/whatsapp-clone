@@ -212,7 +212,7 @@ const MessageInput = () => {
   return (
     <>
       <div
-        className={`bg-gray-primary p-2 flex gap-4 items-center ${isAudioVisible && "justify-stretch"} `}
+        className={`bg-gray-primary sticky p-2 flex gap-4 items-center ${isAudioVisible && "justify-stretch"} `}
       >
         {!isAudioVisible && (
           <div className="relative flex gap-2 ml-2">

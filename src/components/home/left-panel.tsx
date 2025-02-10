@@ -111,7 +111,7 @@ const LeftPanel = () => {
   if (isLoading || !isAuthenticated) return null;
 
   return (
-    <div className={`w-1/3 ${selectedStatus || selectedConversation ? " sm:block hidden " : "w-full sm:w-1/3"} border-gray-600 border-r sm:relative`}>
+    <div className={`w-1/3 ${selectedStatus || selectedConversation ? " sm:block hidden " : "w-full sm:w-1/3"} border-gray-600 border-r sm:relative h-full`}>
       <div className="sticky top-0 bg-left-panel z-10">
         {/* Header */}
         <div className="flex justify-between bg-gray-primary p-3 items-center">
