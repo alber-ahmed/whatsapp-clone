@@ -287,7 +287,7 @@ const MessageInput = () => {
               }}
             />
             <div
-              className={` text-lg flex ${isRecording && "py-3 px-14 mr-4"} justify-center items-center   ${renderedAudio ? "bg-gray-primary drop-shadow-none rounded-none " : "rounded-full drop-shadow-lg bg-gray-secondary" } `}
+              className={`sm:text-lg text-sm flex ${isRecording && "sm:py-3 py-2 sm:px-14 px-12  sm:mr-4 mr-4"} justify-center items-center   ${renderedAudio ? "bg-gray-primary drop-shadow-none rounded-none " : "rounded-full drop-shadow-lg bg-gray-secondary" } `}
             >
               {isRecording ? (
                 <div className="text-red-500 animate-pulse text-center">

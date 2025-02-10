@@ -30,8 +30,8 @@ const MessageContainer = () => {
   }, [messages, events]);
 
   return (
-    <div className="relative p-3 flex-1 overflow-auto h-full bg-chat-tile-light dark:bg-chat-tile-dark">
-      <div className="mx-12 flex flex-col gap-3">
+    <div className="relative sm:p-3 px-1 pl-3 py-3 flex-1 overflow-auto h-full bg-chat-tile-light dark:bg-chat-tile-dark">
+      <div className="sm:mx-12 flex flex-col gap-3">
         {initialEvent &&
           initialEvent !== null &&
           events &&

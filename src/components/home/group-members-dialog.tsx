@@ -182,7 +182,7 @@ const GroupMembersDialog = ({
           tap here for group info
         </p>
       </DrawerTrigger>
-      <DrawerContent className="w-2/6 overflow-x-hidden max-h-full overflow-y-auto">
+      <DrawerContent className="sm:w-2/5 w-4/5 overflow-x-hidden max-h-full overflow-y-auto">
         <DialogTitle></DialogTitle>
         <DrawerHeader>
           <DrawerDescription asChild>

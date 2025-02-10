@@ -48,8 +48,8 @@ const Conversation = ({ conversation }: { conversation: any }) => {
 						{lastMessage?.sender === me?._id ? <MessageSeenSvg /> : ""}
 						{conversation.isGroup && <Users size={16} />}
 						{!lastMessage && "Say Hi!"}
-						{lastMessageType === "text" ? lastMessage?.content.split("`")[0].length > 30 ? (
-							<span className='text-xs'>{lastMessage?.content.slice(0, 30)}...</span>
+						{lastMessageType === "text" ? lastMessage?.content.split("`")[0].length > 13 ? (
+							<span className='text-xs'>{lastMessage?.content.slice(0, 13)}...</span>
 						) : (
 							<span className='text-xs'>{lastMessage?.content.split("`")[0]}</span>
 						): null }

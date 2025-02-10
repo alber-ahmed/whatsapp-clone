@@ -65,7 +65,7 @@ const AudioWaveform = ({ audioUrl, fromMe, isMessage }: { audioUrl: string; from
 
   return (
     <div
-      className={`flex items-center gap-2 pt-1 rounded-lg w-[250px] ${
+      className={`flex items-center sm:gap-2 gap-1 sm:pt-1 pt-0.5 rounded-lg sm:w-[250px] w-[200px] ${
         fromMe ? "bg-green-chat" : isMessage ? "bg-primary-foreground dark:bg-gray-primary" : "bg-gray-primary"
       }`}
     >

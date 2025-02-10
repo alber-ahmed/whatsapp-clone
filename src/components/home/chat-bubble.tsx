@@ -61,7 +61,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
           />
           
           <div
-            className={`flex flex-col z-20 max-w-fit px-2 rounded-md shadow-md relative pt-1 ${bgClass}`}
+            className={`flex flex-col z-20 max-w-fit sm:px-2 px-1 rounded-md shadow-md relative sm:pt-1 pt-0.5 ${bgClass}`}
           >
            <div className="flex items-center justify-between gap-2">
           {isGroup && <UserName message={message} name={message.sender.name!} />}
@@ -75,19 +75,19 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
             {message.content.split("`")[1] === "Forwarded" &&
               message.messageType === "text" && (
                 <span className="text-xs font-medium  flex items-center gap-0.5 text-gray-400">
-                  <Forward size={10} strokeWidth={3} /> <p>Forwaded</p>
+                  <Forward size={10} strokeWidth={3} /> <p className="sm:text-xs text-[10px]">Forwaded</p>
                 </span>
               )}
             {message.content.split("`")[2] === "Forwarded" &&
               message.messageType === "audio" && (
                 <span className="text-xs font-medium flex items-center gap-0.5 text-gray-400">
-                  <Forward size={10} strokeWidth={3} /> <p>Forwaded</p>
+                  <Forward size={10} strokeWidth={3} /> <p className="sm:text-xs text-[10px]">Forwaded</p>
                 </span>
               )}
             {message.content.split("`")[3] === "Forwarded" &&
               !["audio", "text"].includes(message.messageType) && (
                 <span className="text-xs font-medium flex items-center gap-0.5 text-gray-400">
-                  <Forward size={10} strokeWidth={3} /> <p>Forwaded</p>
+                  <Forward size={10} strokeWidth={3} /> <p className="sm:text-xs text-[10px]">Forwaded</p>
                 </span>
               )}
             {message.messageType === "text" && (
@@ -120,7 +120,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
             )}
             {open && (
               <ImageDialog
-                src={message.content.split(", ")[0]}
+                src={message.content.split("`")[0]}
                 open={open}
                 onClose={() => setOpen(false)}
               />
@@ -140,27 +140,27 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
     <>
       <DateIndicator message={message} previousMessage={previousMessage} />
 
-      <div className="flex w-2/3 gap-1 ml-auto">
+      <div className="flex w-2/3  gap-1 ml-auto">
         <div
-          className={`flex flex-col z-20 max-w-fit px-2  rounded-md shadow-md ml-auto relative pt-1 ${bgClass}`}
+          className={`flex flex-col z-20 max-w-fit sm:px-2 px-1  rounded-md shadow-md ml-auto relative sm:pt-1 pt-0.5 ${bgClass}`}
         >
           <SelfMessageIndicator />
           {message.content.split("`")[1] === "Forwarded" &&
             message.messageType === "text" && (
               <span className="text-xs font-medium flex items-center gap-0.5 text-gray-400">
-                <Forward size={10} strokeWidth={3} /> <p>Forwaded</p>
+                <Forward size={10} strokeWidth={3} /> <p className="sm:text-xs text-[10px]">Forwaded</p>
               </span>
             )}
           {message.content.split("`")[2] === "Forwarded" &&
             message.messageType === "audio" && (
               <span className="text-xs font-medium flex items-center gap-0.5 text-gray-400">
-                <Forward size={10} strokeWidth={3} /> <p>Forwaded</p>
+                <Forward size={10} strokeWidth={3} /> <p className="sm:text-xs text-[10px]">Forwaded</p>
               </span>
             )}
           {message.content.split("`")[3] === "Forwarded" &&
             (!["audio", "text"].includes(message.messageType)) && (
               <span className="text-xs font-medium flex items-center gap-0.5 text-gray-400">
-                <Forward size={10} strokeWidth={3} /> <p>Forwaded</p>
+                <Forward size={10} strokeWidth={3} /> <p className="sm:text-xs text-[10px]">Forwaded</p>
               </span>
             )}
 
@@ -171,7 +171,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 
           {open && (
             <ImageDialog
-              src={message.content.split(",")[0]}
+              src={message.content.split("`")[0]}
               open={open}
               onClose={() => setOpen(false)}
             />
@@ -206,15 +206,15 @@ const VideoMessage = ({
 }) => {
 
   return (
-    <>
+    <div className="sm:w-[250px] sm:h-[250px] w-[195px] h-[195px]">
       
       <ReactPlayer
         url={message.content.split("`")[0]}
-        width="250px"
-        height="250px"
+        width="100%"
+        height="100%"
         controls={true}
       />
-    </>
+    </div>
   );
 };
 
@@ -241,7 +241,8 @@ const FileMessage = ({
         >
           <div className="flex items-center gap-1 mr-3">
             <FileInput size={18} />
-            <span>{truncateFilename(message.content.split("`")[1], 37)}</span>
+            <span className="sm:block hidden">{truncateFilename(message.content.split("`")[1], 37)}</span>
+            <span className="sm:hidden block  ">{truncateFilename(message.content.split("`")[1], 21)}</span>
           </div>
         </div>
       </div>
@@ -283,7 +284,7 @@ const ImageMessage = ({
   return (
     <>
      
-      <div className="w-[250px] h-[250px] m-2 relative">
+      <div className="sm:w-[250px] sm:h-[250px] w-[190px] h-[190px] m-2 relative">
         <Image
           src={message.content.split("`")[0]}
           fill
@@ -312,9 +313,9 @@ const ImageDialog = ({
         if (!isOpen) onClose();
       }}
     >
-      <DialogContent className="min-w-[750px]">
+      <DialogContent className="sm:min-w-[750px] min-w-[330px] p-1">
         <DialogTitle></DialogTitle>
-        <DialogDescription className="relative h-[450px] flex justify-center">
+        <DialogDescription className="relative sm:h-[450px] h-[300px] flex justify-center p-0">
           <Image
             src={src}
             fill
@@ -328,11 +329,11 @@ const ImageDialog = ({
 };
 
 const OtherMessageIndicator = () => (
-  <div className="absolute bg-white dark:bg-gray-primary top-0 -left-[4px] w-3 h-3 rounded-bl-full" />
+  <div className="absolute bg-white dark:bg-gray-primary top-0 -left-[4px] sm:w-3 sm:h-3 w-2 h-2 rounded-bl-full" />
 );
 
 const SelfMessageIndicator = () => (
-  <div className="absolute bg-green-chat top-0 -right-[3px] w-3 h-3 rounded-br-full overflow-hidden" />
+  <div className="absolute bg-green-chat top-0 -right-[3px] sm:w-3 sm:h-3 w-2 h-2 rounded-br-full overflow-hidden" />
 );
 const MessageTime = ({ time, fromMe }: { time: string; fromMe: boolean }) => {
   return (
@@ -369,7 +370,7 @@ const TextMessage = ({
         ) : message.sender.name === "Gemini AI" ? (
           <MdEditor.Markdown
             source={message.content}
-            className="bg-transparent "
+            className="bg-transparent max-w-full break-all px-1"
             style={{
               background: "transparent",
               color: theme === "dark" ? "white" : "black",
@@ -377,7 +378,7 @@ const TextMessage = ({
             }}
           />
         ) : (
-          <p className={`mr-2  text-sm font-light`}>
+          <p className={`sm:mr-2 mr-1  max-w-full   text-sm font-light break-all `}>
             {message.content.split("`")[0]}
           </p>
         )}

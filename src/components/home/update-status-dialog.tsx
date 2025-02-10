@@ -145,133 +145,141 @@ const UpdateStatusDialog = ({
     <div>
       {statusType === "text" && (
         <Dialog
-          open={statusType === "text"}
-          onOpenChange={(isOpen) => {
-            if (!isOpen) onClose();
-          }}
-        >
-          <DialogContent className={`px-2 pb-2 pt-0`}>
-            <DialogTitle></DialogTitle>
-            <DialogDescription asChild className="h-96 ">
-              <div className="flex flex-col items-center justify-center gap-4">
-                <div
-                  className={`w-3/4 h-5/6 flex items-center justify-center overflow-x-clip px-1 ${selectedBg}`}
+        open={statusType === "text"}
+        onOpenChange={(isOpen) => {
+          if (!isOpen) onClose();
+        }}
+      >
+        <DialogContent className=" px-2 pb-2 pt-0 sm:px-4 sm:pb-4 sm:pt-2">
+          <DialogTitle></DialogTitle>
+          <DialogDescription asChild className="h-auto w-full sm:h-96 p-0">
+            <div className="flex flex-col pt-5 items-center justify-center gap-4  sm:p-4">
+              {/* Message Display Area */}
+              <div
+                className={`w-[75%]  sm:w-3/4 h-48 sm:h-5/6 flex items-center justify-center overflow-x-clip px-1 ${selectedBg}`}
+              >
+                <span
+                  className={`text-center text-lg break-words break-all overflow-wrap ${selectedTextColor}`}
                 >
-                  <span
-                    className={`text-center text-lg break-words break-all overflow-wrap ${selectedTextColor}`}
-                  >
-                    {msgText}
-                  </span>
-                </div>
-                <div className="flex flex-col items-center gap-3">
-                  <span>Choose Background Color:</span>
-                  <div className="flex items-center justify-center w-full">
-                    <Carousel className="w-1/2 flex items-center justify-center">
-                      <CarouselContent className="w-1/3">
-                        {bgColors.map((color) => (
-                          <CarouselItem
-                            key={color}
-                            onClick={() => setSelectedBg(color)}
-                            className="basis-1/8 cursor-pointer"
-                          >
-                            <div
-                              className={`w-6 h-6 rounded-full ${color}`}
-                            ></div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                      <CarouselPrevious />
-                      <CarouselNext />
-                    </Carousel>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-3">
-                  <span>Choose Text Color:</span>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <div
-                        className={`h-10 w-10 flex items-center justify-center bg-white border rounded-full `}
-                      >
-                        <PaintBucket />
-                      </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-6">
-                      {textColors.map((color) => (
-                        <DropdownMenuItem
-                          asChild
+                  {msgText}
+                </span>
+              </div>
+      
+              {/* Background Color Picker */}
+              <div className="flex flex-col items-center gap-3 w-[73%] sm:w-full">
+                <span>Choose Background Color:</span>
+                <div className="flex items-center justify-center w-[73%]">
+                  <Carousel className="w-[73%]  sm:w-1/2">
+                    <CarouselContent className="w-full">
+                      {bgColors.map((color) => (
+                        <CarouselItem
                           key={color}
-                          onClick={() => setSelectedTextColor(color)}
+                          onClick={() => setSelectedBg(color)}
+                          className="basis-1/8 cursor-pointer"
                         >
-                          <span
-                            className={`h-6 w-full rounded-full mb-1 border-2 bg-${changeIntoBg(color)}`}
-                          ></span>
-                        </DropdownMenuItem>
+                          <div
+                            className={`sm:w-6 sm:h-6 w-5 h-5 rounded-full ${color}`}
+                          ></div>
+                        </CarouselItem>
                       ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
                 </div>
               </div>
-            </DialogDescription>
-            <DialogFooter>
-              <div className="flex items-center mt-4 overflow-auto gap-5 w-full">
-                <div className="flex items-start gap-2 w-4/5">
-                  <div
-                    ref={ref}
-                    onClick={() => setIsComponentVisible(true)}
-                    className="cursor-pointer"
-                  >
-                    {isComponentVisible && (
-                      <EmojiPicker
-                        theme={theme === "dark" ? Theme.DARK : Theme.LIGHT}
-                        style={{
-                          position: "absolute",
-                          bottom: "1.5rem",
-                          left: "1rem",
-                          zIndex: 50,
-                        }}
-                        height={300}
-                        width={300}
-                        onEmojiClick={(emojiObject) =>
-                          setMsgText((prev) => prev + emojiObject.emoji)
-                        }
-                      />
-                    )}
-                    <Laugh
-                      size={20}
-                      className="text-gray-600 dark:text-gray-400 mr-1 mt-3 "
+      
+              {/* Text Color Picker */}
+              <div className="flex flex-col items-center gap-3 w-full">
+                <span>Choose Text Color:</span>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div
+                      className={`h-10 w-10 flex items-center justify-center bg-white border rounded-full cursor-pointer`}
+                    >
+                      <PaintBucket />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-40">
+                    {textColors.map((color) => (
+                      <DropdownMenuItem
+                        asChild
+                        key={color}
+                        onClick={() => setSelectedTextColor(color)}
+                      >
+                        <span
+                          className={`h-6 w-full rounded-full mb-1 border-2 bg-${changeIntoBg(color)}`}
+                        ></span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
+          </DialogDescription>
+      
+          {/* Footer with Input and Button */}
+          <DialogFooter>
+            <div className="flex flex-col sm:flex-row items-center mt-4 gap-3  w-full">
+              <div className="flex items-start gap-2 w-full  sm:px-0 sm:w-4/5">
+                <div
+                  ref={ref}
+                  onClick={() => setIsComponentVisible(true)}
+                  className="cursor-pointer"
+                >
+                  {isComponentVisible && (
+                    <EmojiPicker
+                      theme={theme === "dark" ? Theme.DARK : Theme.LIGHT}
+                      style={{
+                        position: "absolute",
+                        bottom: "1.5rem",
+                        left: "1rem",
+                        zIndex: 50,
+                      }}
+                      height={300}
+                      width={300}
+                      onEmojiClick={(emojiObject) =>
+                        setMsgText((prev) => prev + emojiObject.emoji)
+                      }
                     />
-                  </div>
-                  <Textarea
-                    placeholder="Type a message"
-                    className="text-sm w-[360px]  border-2 rounded-lg shadow-sm bg-gray-tertiary focus-visible:ring-transparent"
-                    value={msgText}
-                    onChange={(e) => setMsgText(e.target.value)}
+                  )}
+                  <Laugh
+                    size={20}
+                    className="text-gray-600 dark:text-gray-400 mr-1 mt-3"
                   />
                 </div>
-                <Button
-                  disabled={
-                    isLoading ||
-                    msgText === "" ||
-                    selectedBg === "" ||
-                    selectedTextColor === ""
-                  }
-                  variant={"secondary"}
-                  onClick={handleUpdateTextStatus}
-                >
-                  {isLoading ? (
-                    <BeatLoader
-                      size={10}
-                      color={theme === "dark" ? "silver" : "gray"}
-                    />
-                  ) : (
-                    "Update"
-                  )}
-                </Button>
+                <Textarea
+                  placeholder="Type a message"
+                  className="text-sm w-[85%] sm:w-full border-2 rounded-lg shadow-sm bg-gray-tertiary focus-visible:ring-transparent"
+                  value={msgText}
+                  onChange={(e) => setMsgText(e.target.value)}
+                />
               </div>
-            </DialogFooter>
-            <DialogClose />
-          </DialogContent>
-        </Dialog>
+              <Button
+                disabled={
+                  isLoading ||
+                  msgText === "" ||
+                  selectedBg === "" ||
+                  selectedTextColor === ""
+                }
+                variant={"secondary"}
+                onClick={handleUpdateTextStatus}
+                className="w-[84%] sm:w-auto"
+              >
+                {isLoading ? (
+                  <BeatLoader
+                    size={10}
+                    color={theme === "dark" ? "silver" : "gray"}
+                  />
+                ) : (
+                  "Update"
+                )}
+              </Button>
+            </div>
+          </DialogFooter>
+          <DialogClose />
+        </DialogContent>
+      </Dialog>
       )}
       {statusType === "image" && statusContent instanceof File && (
         <MediaImageDialog

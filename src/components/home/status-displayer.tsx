@@ -65,7 +65,7 @@ const StatusDisplayer = () => {
           />
 
           <div
-            className={`flex items-center justify-center lg:w-1/2 sm:w-3/4 w-full h-full ${selectedStatus.backgroundColor} ${selectedStatus.textColor}`}
+            className={`flex items-center justify-center lg:w-1/2 sm:w-3/4 w-full h-full  ${selectedStatus.backgroundColor} ${selectedStatus.textColor}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -91,7 +91,7 @@ const StatusDisplayer = () => {
             width={500}
             height={500}
             className="lg:w-1/2
-            h-full sm:w-3/4 w-full"
+            h-full sm:w-3/4 w-full object-contain"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           />

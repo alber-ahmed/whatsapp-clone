@@ -51,7 +51,7 @@ const UserName = ({ message, name }: { message: IMessage; name: string }) => {
   return (
       
     <div
-      className={`text-xs  font-semibold cursor-pointer my-0.5 hover:underline  ${message.sender.name === "Gemini AI" || name==="Gemini AI" ? "gradient-text" : !selectedConversation?.participants.includes(message.sender._id) && message.sender._id !== selectedConversation?.admin  && "text-gray-500"} `}
+      className={`text-xs   font-semibold cursor-pointer sm:my-0.5 hover:underline  ${message.sender.name === "Gemini AI" || name==="Gemini AI" ? "gradient-text" : !selectedConversation?.participants.includes(message.sender._id) && message.sender._id !== selectedConversation?.admin  && "text-gray-500"} `}
       onClick={message.sender.name === "Gemini AI" ? handleGeminiClick : handleUserClick}
     >
       {message.sender.name !== "Gemini AI"  ? name : <p className="hover:underline flex items-center gap-1">Gemini AI <BotIcon size={15}/></p> }

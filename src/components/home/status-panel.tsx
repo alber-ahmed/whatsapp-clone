@@ -14,7 +14,9 @@ const StatusPanel = () => {
     
     const {isLoading} = useConvexAuth()
 
-    const users = useQuery(api.users.getUsers)
+    const users = useQuery(api.users.getUsers,{
+      searchUser: ""
+    })
     const me = useQuery(api.users.getMe)
     const removeStatus = useMutation(api.status.removeStatus)
     
@@ -30,7 +32,7 @@ const StatusPanel = () => {
     <>
   
 
-     <div className="w-3/4 flex flex-col">
+     <div className={`sm:w-3/4 flex flex-col ${selectedStatus && "sm:w-3/4 w-full" }`}>
       <div className="w-full sticky top-0 z-50">
         {/* Header */}
         <div className="flex justify-between bg-gray-primary p-3">

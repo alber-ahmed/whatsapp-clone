@@ -78,7 +78,7 @@ const MessageActions = ({
               {message.messageType !== "image" ? (
                 <DropdownMenuItem className="cursor-pointer">
                   <Link
-                    href={message.content.split(",")[0]}
+                    href={message.content.split("`")[0]}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -99,8 +99,8 @@ const MessageActions = ({
                 className="cursor-pointer"
                 onClick={() =>
                   download(
-                    message.content.split(",")[0],
-                    message.content.split(",")[1]
+                    message.content.split("`")[0],
+                    message.content.split("`")[1]
                   )
                 }
               >
@@ -193,7 +193,7 @@ const MyConversationsDialog = ({
           <div className="max-h-72 overflow-y-auto">
             {myConversations?.map((conversation: any) => {
               const conversationImage =
-                conversation.groupImage || conversation.image;
+                conversation.groupImage?.split("`")[0] || conversation.image;
               const conversationName =
                 conversation.groupName || conversation.name;
               const lastMessage = conversation.lastMessage;

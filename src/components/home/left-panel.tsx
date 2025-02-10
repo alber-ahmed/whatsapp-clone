@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import UpdateStatusDialog from "./update-status-dialog";
 import {AnimatePresence, motion} from "framer-motion";
+import { useStatusStore } from "@/store/status-store";
 
 const LeftPanel = () => {
   const { theme } = useTheme();
@@ -106,11 +107,11 @@ const LeftPanel = () => {
     });
     return;
   };
-
+  const {selectedStatus} = useStatusStore()
   if (isLoading || !isAuthenticated) return null;
 
   return (
-    <div className="w-1/4 border-gray-600 border-r relative">
+    <div className={`w-1/3 ${selectedStatus || selectedConversation ? " sm:block hidden " : "w-full sm:w-1/3"} border-gray-600 border-r sm:relative`}>
       <div className="sticky top-0 bg-left-panel z-10">
         {/* Header */}
         <div className="flex justify-between bg-gray-primary p-3 items-center">
@@ -202,7 +203,7 @@ const LeftPanel = () => {
       {selectedTab === "chats" && (
         <div className="my-3 flex flex-col gap-0 max-h-[80%] overflow-auto ">
           <div
-            className="absolute bottom-3 cursor-pointer right-3 flex items-center font-medium font-sans gap-1 bg-gray-50 border dark:bg-gray-800  p-[7px] rounded-lg "
+            className="absolute bottom-3 cursor-pointer right-3  items-center font-medium font-sans gap-1  bg-gray-50 border dark:bg-gray-800  p-[7px] rounded-lg "
             onClick={handleGeminiClick}
           >
             <Stars

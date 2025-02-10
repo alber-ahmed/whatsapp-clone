@@ -90,9 +90,15 @@ export const updateTextStatus = mutation({
 
      const prevStatus = await ctx.db.query("status").filter((q)=>q.eq(q.field("user"), user._id)).first();
 
-     if(prevStatus){
-      await ctx.db.delete(prevStatus._id);
+     if(prevStatus && prevStatus.statusType !== "text"){
+      await ctx.storage.delete(prevStatus.content.split("`")[1] as Id<"_storage">);
      }
+     
+     if(prevStatus){
+        
+      await ctx.db.delete(prevStatus!._id);
+      }
+
      await ctx.db.insert("status", {
       backgroundColor: args.backgroundColor,
       content: args.content,
@@ -127,11 +133,13 @@ export const updateImageStatus = mutation({
 
      const prevStatus = await ctx.db.query("status").filter((q)=>q.eq(q.field("user"), user._id)).first();
 
-     if(prevStatus){
+     if(prevStatus && prevStatus.statusType !== "text"){
       await ctx.storage.delete(prevStatus.content.split("`")[1] as Id<"_storage">);
-      await ctx.db.delete(prevStatus._id);
      }
-     
+     if(prevStatus){
+        
+     await ctx.db.delete(prevStatus!._id);
+     }
      await ctx.db.insert("status", {
       backgroundColor: args.backgroundColor,
       content: url + "`" + args.content,
